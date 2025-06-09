@@ -35,9 +35,10 @@ contract GameToken is Ownable {
     mapping(address => uint256) public balanceOf;
     mapping(address => mapping(address => uint256)) public allowance;
 
-    constructor() {
-        _totalSupply = 42 * (10 ** uint256(decimals)); // 42 tokens with 18 decimals
-        balanceOf[msg.sender] = _totalSupply; 
+    constructor(uint256 initialSupply) {
+        _totalSupply = initialSupply;
+        balanceOf[msg.sender] = _totalSupply;
+        emit Transfer(address(0), msg.sender, initialSupply);
     }
 
     event Transfer(address indexed from, address indexed to, uint256 value);
@@ -45,6 +46,7 @@ contract GameToken is Ownable {
 
     function transfer(address _to, uint256 _value) external returns (bool) {
         require(_to != address(0), "Invalid address");
+        require(_value > 0, "Value must be greater than zero");
         require(balanceOf[msg.sender] >= _value, "Insufficient balance");
 
         balanceOf[msg.sender] -= _value;
@@ -54,7 +56,8 @@ contract GameToken is Ownable {
     }
 
     function approve(address _spender, uint256 _value) external returns (bool) {
-        require(_spender != address(0), "Adresse invalide");
+        require(_spender != address(0), "Invalid address");
+        require(_value > 0, "Value must be greater than zero");
         allowance[msg.sender][_spender] = _value;
         emit Approval(msg.sender, _spender, _value);
         return true;
