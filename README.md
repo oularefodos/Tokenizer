@@ -1,14 +1,53 @@
-# Sample Hardhat Project
+# Game42 Token – ERC20-Compatible Token on BNB Chain
 
-This project demonstrates a basic Hardhat use case. It comes with a sample contract, a test for that contract, and a Hardhat Ignition module that deploys that contract.
+## 🧩 Project Overview
 
-Try running some of the following tasks:
+**Game42 (G42)** is a BEP-20 (ERC20-compatible) token deployed on BNB Smart Chain. Developed as part of the "Tokenizer" project from 42 School in partnership with BNB Chain, this token is designed to showcase ownership control, minting, burning, transfers, and allowances.
 
-```shell
-npx hardhat help
-npx hardhat test
-REPORT_GAS=true npx hardhat test
-npx hardhat node
-npx hardhat ignition deploy ./ignition/modules/Lock.js
-```
-# Tokenizer
+## 🛠 Stack
+
+- **Blockchain:** BNB Smart Chain (Testnet)
+- **Language:** Solidity ^0.8.28
+- **Framework:** Hardhat
+- **Token Standard:** BEP-20 (ERC20 compatible)
+
+## 📦 Folder Structure
+
+├── README.md
+├── code # Contains the token smart contract
+│ └── GameToken.sol
+├── deployment # Contains deployment scripts and Hardhat configs
+│ ├── deploy.js
+│ └── hardhat.config.js
+└── documentation # Contains functional and usage documentation
+└── overview.md
+
+## 🎮 Token Details
+
+- **Name:** Game42
+- **Symbol:** G42
+- **Decimals:** 18
+- **Initial Supply:** 42 G42 (minted to deployer)
+
+## ✍️ Contract Features
+
+- ✅ Ownership control via `Ownable`
+- ✅ `transfer`, `approve`, `transferFrom` fully compliant with ERC20
+- ✅ `mint` and `burn` functions restricted to owner
+- ✅ Allowance increase/decrease helpers
+- ✅ Events emitted for all major operations
+
+## ⚙️ Setup and Deployment
+
+### 1. Clone & Install
+
+```bash
+git clone <repo_url>
+cd <repo_name>
+npm install
+
+## Compile Contracts
+```bash
+npx hardhat compile
+npx hardhat run --network testnet deployment/deploy.js
+ 
